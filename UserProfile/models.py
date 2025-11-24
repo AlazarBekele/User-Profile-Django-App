@@ -18,3 +18,9 @@ def create_profile (sender, created, instance, **kwargs):
 
         user_profile = Profile(user=instance)
         user_profile.save()
+        # the user automatically follow themselves
+
+        user_profile.follows.set([instance.profile.id])
+        user_profile.save()
+
+post_save.connect (create_profile, sender=User)
