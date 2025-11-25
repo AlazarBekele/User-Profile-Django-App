@@ -1,14 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Profile
-
+from django.contrib import messages
 # Create your views here.
 
 def index (request):
 
-    profile = Profile.objects.exclude(user=request.user)
+    if request.user.is_authenticated:
+        
+        profile = Profile.objects.exclude(user=request.user)
+        context= {
+            'profile' : profile
+        }
+        return render (request, 'Profile_list.html', context=context)
+    
+    else:
 
-    context= {
-        'profile' : profile
-    }
+        messages.success(request, "Must Have logged in to access this page...")
 
-    return render (request, 'Profile_list.html', context=context)
+        return redirect ('navbarPage')
+    
+def home (request):
+
+    return render (request, 'index.html')
+
+
+def navbar (request):
+
+    return render (request, 'newhome.html')

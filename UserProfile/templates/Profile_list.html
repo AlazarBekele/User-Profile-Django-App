@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +18,32 @@
 
         <div class="container gap-4">
 
+            <h1>User Profile</h1>
+
             {% if profile %}
 
                     {% for Profiles in profile %}
 
-                        <div class="card row mb-4 shadow-sm">
+                        <div class="card col-md-5 mb-4 border border-dark-subtle">
 
-                            <h5>Username: @{{ Profiles.user.username }}</h5>
-                            <h5>Email: {{ Profiles.user.email }}</h5>
-                    
+                            <div class="row">
+
+                                <div class="col-md-4">
+
+                                    <img src="{% static 'defualt_img/pngw.png' %}" class="img-fluid rounded-start" alt="Profile Img">
+
+                                </div>
+
+                                <div class="col-md-8">
+
+                                    <h5>Username: @{{ Profiles.user.username }}</h5>
+                                    <h5>Email: {{ Profiles.user.email }}</h5>
+                                    <h6>Last Seen: {{ Profiles.date_modified }}</h6>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
                     {% endfor %}
