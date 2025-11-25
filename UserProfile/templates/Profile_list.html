@@ -9,7 +9,20 @@
 
     <div>
 
-        
+        <div>
+
+            {% if Profile %}
+
+                {% for Profiles in Profile %}
+
+                    <h2>Username: @{{ Profiles.user.username }}</h2>
+                    <h2>Email: {{ Profiles.user.email }}</h2>
+                
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
 
     </div>
     
