@@ -13,7 +13,12 @@
 
             <a class="nav-link" href="{% url 'home' %}">Home</a>
             <a class="nav-link" href="{% url 'profile_list' %}">Profile list</a>
-            <a class="nav-link" href="{% url 'profile_id' %}">Profile id List</a>
+            
+            {% if user.is_authenticated %}
+
+                <a class="nav-link" href="{% url 'profile_id' request.user.id %}">Profile id List</a>
+
+            {% endif %}
 
         </nav>
 

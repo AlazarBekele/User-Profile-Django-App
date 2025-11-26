@@ -11,7 +11,26 @@
 
         <div>
 
-            <h1>This Is Profile Page</h1>
+            {% if profile %}
+
+                <h1>{{ profile.user.username }}'s Profile</h1>
+
+                <strong>Follower's</strong><br>
+                {% for following in profile.follows.all %}
+
+                    {% if following %}
+
+                        <a href="{% url 'profile_id' following.user.id %}">@{{ following }}</a><br>
+
+                    {% endif %}
+
+                {% empty %}
+
+                    <h2>No Following!</h2>
+
+                {% endfor %}
+
+            {% endif %}
 
         </div>
         
