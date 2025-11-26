@@ -27,3 +27,19 @@ def home (request):
 def navbar (request):
 
     return render (request, 'newhome.html')
+
+def profile (request, pk):
+
+    if request.user.is_authenticated:
+
+        profile = Profile.objects.get(user_id=pk)
+        context = {
+            'profile' : profile
+        }
+        return render (request, 'profile_html.html', context=context)
+    
+    else:
+
+        messages.success(request, "Must Have logged in to access this page...")
+
+        return redirect ('navbarPage')
